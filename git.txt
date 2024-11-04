@@ -1,0 +1,156 @@
+# Gitリポジトリの作成
+git init
+※プロジェクトディレクトリ内で行う
+
+# 新規追加及び変更したファイルをコミット対象に追加
+git add {ファイル名orディレクトリ名}
+※ファイル名を「.」とすると差分全てが対象
+
+# 削除したファイルをコミット対象に追加
+git rm {ファイル名orディレクトリ名}
+※--cached {ファイル名}:リポジトリのみ削除
+
+# ファイルの移動
+git mv {旧ファイル名} {新ファイル名}
+
+# ローカルリポジトリにコミット
+git commit
+※-v:変更内容を表示
+※-m "{メッセージ名}":メッセージをコマンドと一緒に入力可能
+
+# 変更ファイルのステージ状況を表示
+git status
+
+# ステージング領域との変更差分を表示
+git diff
+※--staged:ローカルリポジトリとの変更差分
+
+# コミットログを表示
+git log
+※--oneline:一行で表示
+※-p ({ファイル名}):変更内容を表示
+※-n {表示数}:表示数を指定
+※ログ表示時の操作:j=下移動,k=上移動,q=終了
+
+# バージョン確認
+git version
+
+# GitHub初期設定
+git config --global user.name "{ユーザ名}"
+git config --global user.email {メールアドレス}
+git config --global core.editor "code --wait"
+
+# コマンドのエイリアス設定
+git config --global alias.{エイリアス名} {コマンド名}
+※--global:PC全体の設定
+
+# デフォルトのプルをリベース型に設定
+git config --global pull.rebase true
+※--global:PC全体の設定
+
+# リポジトリのコピー作成
+git clone {リポジトリアドレス}
+
+# ローカルリポジトリを表示
+git remote
+※-v:URLを表示
+
+# ローカルリポジトリの詳細情報を表示
+git remote show {リポジトリ名}
+
+# ローカルリポジトリにリモートリポジトリを新規追加
+git remote add {リポジトリ名} http://github.com/{ユーザ名}/{リポジトリ名}.git
+※リポジトリ名:慣用句(origin)を使う、複数管理する場合は別の名前
+
+# ローカルリポジトリから削除
+git remote rename {リポジトリ名} {新リポジトリ名}
+
+# ローカルリポジトリから削除
+git remote remove {リポジトリ名}
+※removeとrmは同じ(バージョンによってはremoveは動作しない)
+
+# リモートリポジトリ(GitHub)へ追加
+git push {リポジトリ名} {ブランチ名}
+※-u:以降リポジトリ名とブランチ名を省略できる
+
+# リモートリポジトリ(GitHub)からワークツリーに反映
+git pull {リポジトリ名} {ブランチ名}
+※リポジトリ名とブランチ名は省略可
+※--rebase:
+
+# リモート(GitHub)からローカルリポジトリに反映
+git fetch {リポジトリ名}
+
+# ローカルリポジトリからワークツリーに反映
+git merge {リポジトリ名}/{ブランチ名}
+
+# 変更の取り消し
+git checkout -- {ファイル名orディレクトリ名}
+
+# ステージに上げた変更を取り消し
+git reset HEAD {ファイル名orディレクトリ名}
+
+# 直前のコミットをやり直す(上書き)
+git commit --amend
+※push後は×
+
+# 直前の複数のコミットを編集
+git rebase -i HEAD~{遡る履歴数}
+※やり直す:pickをeditに変更、amendを実行
+※統合:pickをsquashに変更(直前のpickに統合)
+※分割:pickをeditに変更、reset HEAD^、add,commitを繰り返す
+※終了時:git rebase --continueで終了
+
+# ブランチの一覧を表示
+git branch
+※-a:リモートリポジトリも全て表示
+
+# ブランチの新規作成
+git branch {ブランチ名}
+
+# ブランチの切り替え
+git checkout {ブランチ名}
+※-b:作成も同時に行う
+
+# ブランチ名(作業中)の変更
+git branch -m {ブランチ名}
+
+# ブランチの削除
+git branch -d {ブランチ名}
+※-d>>-D:マージされていなくても強制削除
+
+# リベース(元のファイルを置き換える)
+git rebase {ブランチ名}
+
+# タグの作成
+git tag -a {タグ名}
+※-m {メッセージ}:メッセージ付き
+
+# タグを後から追加
+git tag {タグ名} {コミットID}
+
+# タグの一覧を表示
+git tag
+
+# タグの詳細を表示
+git show {タグ名}
+
+# タグをリモートリポジトリに送信
+git push {リポジトリ名} {タグ名}
+※{タグ名}>>--tags:全てのタグを対象にする
+
+# 作業の一時退避
+git stash
+
+# 退避した作業の一覧を表示
+git stash list
+
+# 退避した最新の作業の復元
+git stash apply
+※--index:ステージの状況も復元
+※{スタッシュID}:特定の作業を復元 ex.stash@{1}
+
+# 退避した最新の作業の削除
+git stash drop
+※{スタッシュID}:特定の作業を復元 ex.stash@{1}
+※drop>>clear:全作業を削除
