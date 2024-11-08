@@ -2,6 +2,25 @@
 git init
 ※プロジェクトディレクトリ内で行う
 
+# バージョン確認
+git version
+
+# 設定一覧を確認
+git config --global --list
+
+# GitHub初期設定
+git config --global user.name "{ユーザ名}"
+git config --global user.email {メールアドレス}
+git config --global core.editor "code --wait"
+
+# コマンドのエイリアス設定
+git config --global alias.{エイリアス名} {コマンド名}
+※--global:PC全体の設定
+
+# デフォルトのプルをリベース型に設定
+git config --global pull.rebase true
+※--global:PC全体の設定
+
 # 新規追加及び変更したファイルをコミット対象に追加
 git add {ファイル名orディレクトリ名}
 ※ファイル名を「.」とすると差分全てが対象
@@ -31,22 +50,6 @@ git log
 ※-p ({ファイル名}):変更内容を表示
 ※-n {表示数}:表示数を指定
 ※ログ表示時の操作:j=下移動,k=上移動,q=終了
-
-# バージョン確認
-git version
-
-# GitHub初期設定
-git config --global user.name "{ユーザ名}"
-git config --global user.email {メールアドレス}
-git config --global core.editor "code --wait"
-
-# コマンドのエイリアス設定
-git config --global alias.{エイリアス名} {コマンド名}
-※--global:PC全体の設定
-
-# デフォルトのプルをリベース型に設定
-git config --global pull.rebase true
-※--global:PC全体の設定
 
 # リポジトリのコピー作成
 git clone {リポジトリアドレス}
