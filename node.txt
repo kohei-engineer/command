@@ -1,0 +1,35 @@
+# volta バージョン確認
+volta -v
+
+# node lts インストール(バージョン切替)
+volta install node@lts
+※node@{バージョン}:バージョン指定
+
+# Vite プロジェクトの作成
+npm create vite@latest
+npm install
+npm run dev
+
+# パッケージ インストール
+npm install {パッケージ名}
+※package.jsonがある場合パッケージ名を省略可
+※パッケージ名をスペース区切りで並べて一括でインストール可
+※{パッケージ名}@lts:バージョン指定
+※-D:開発用
+※-g:PC全体の設定
+
+# パッケージ インストール 厳密なバージョン指定(package-lock.json参照)
+npm ci
+
+# パッケージ アンインストール
+npm uninstall {パッケージ名}
+
+# パッケージ バージョン一覧を表示
+npm view {パッケージ名} versions
+
+# パッケージ ドキュメント表示
+npm docs {パッケージ名}
+
+# 対話型でpackage.jsonを作成
+npm init
+※-y:デフォルト値
