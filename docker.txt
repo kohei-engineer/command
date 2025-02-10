@@ -1,0 +1,96 @@
+# イメージのダウンロード
+docker image pull {イメージ名}
+※タグを指定する場合は:を付ける、指定しない場合はデフォルトlatestとなる
+※イメージ名およびコンテナ名はIDでもよい
+
+# イメージ一覧(ローカル)の表示
+docker image ls
+
+# イメージの削除
+docker image rm {イメージ名}
+
+# イメージのエクスポート
+docker save {イメージ名}:{タグ} > {出力ファイル名}.tar
+
+# コンテナの作成及び起動
+docker container run {イメージ名}
+※-it:対話モード
+※--name {コンテナ名}:コンテナ名を指定
+※--rm:コマンド実行後にコンテナ破棄
+※-d:デタッチドモード(バックグラウンドで実行)
+※-p {ホストポート}:{コンテナポート}:
+※-v {ボリューム名}:{コンテナ内絶対パス}:ローカルとコンテナ内のボリュームをマウント
+※-v {ホスト絶対パス}:{コンテナ内絶対パス}:バインドマウント(ローカルからアクセス可能なため非推奨)
+※--network {ネットワーク名}:ネットワークを指定
+
+# コンテナ一覧(ローカル)の表示
+docker container ls
+※-a(all)オプションにより起動していないコンテナも表示
+
+# コンテナの停止
+docker container stop {コンテナ名}
+
+# コンテナの再起動
+docker container restart {コンテナ名}
+
+# コンテナの破棄
+docker container rm {コンテナ名}
+※-f:起動中のコマンドも強制破棄
+
+# コンテナログの確認
+docker container logs {コンテナ名}
+
+# イメージに設定されているコマンドの確認
+docker image inspect {イメージ名}
+
+# コンテナ起動時にコマンドを実行
+docker container run {イメージ名} {実行コマンド}
+
+# 起動中のコンテナにコマンドを実行
+docker container exec {コンテナ名} {実行コマンド}
+※-it:対話モード
+※-d:デタッチドモード(バックグラウンドで実行)
+
+# 停止済みのコンテナを全て破棄
+docker container prune
+
+# デタッチドモードからフォアグラウンドモードに変更
+docker container attach {コンテナ名}
+
+# Dockerfileからイメージを作成
+docker image build {ディレクトリパス}
+※-t:リポジトリ名:タグ名の形式で指定可能
+※-f:実行ディレクトリからDockerfileまでのパス指定 ex. docker/Dockerfile
+※--target:使用するベースを指定
+※--no-cache:キャッシュを使用しない
+
+# Dockerイメージレイヤーの確認
+docker image history {イメージ名}
+
+# ボリュームの作成
+docker volume create {ボリューム名}
+
+# ボリュームの一覧を表示
+docker volume ls
+
+# ボリュームの詳細情報を表示
+docker volume inspect {ボリューム名}
+
+# ボリュームの削除
+docker volume rm {ボリューム名}
+
+# ボリュームの作成
+docker network create {ボリューム名}
+
+# ネットワークの一覧を表示
+docker network ls
+※デフォルトのネットワーク:bridge
+
+# ネットワークの詳細情報を表示
+docker network inspect {ネットワーク名}
+
+# ネットワークの破棄
+docker network rm {ネットワーク名}
+
+# 実行中のコンテナに入りファイル構造を確認
+docker exec -it {コンテナ名} /bin/sh
